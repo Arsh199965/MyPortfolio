@@ -10,6 +10,7 @@ export default {
         angkor: ['"Angkor"', 'serif'],
         inter: ['"Inter"', 'sans-serif'],
         caveat: ['"Caveat"', 'cursive'],
+        pacifico: ['"Pacifico"', 'cursive'],
       },
        colors: {
         customBlue: '#0984E3',
@@ -18,6 +19,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 

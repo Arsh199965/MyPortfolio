@@ -153,9 +153,9 @@ export default function Horizontal() {
               y2="67.7952"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F87274" />
-              <stop offset="0.553184" stop-color="#CA4978" />
-              <stop offset="1" stop-color="#0984E3" />
+              <stop stopColor="#F87274" />
+              <stop offset="0.553184" stopColor="#CA4978" />
+              <stop offset="1" stopColor="#0984E3" />
             </linearGradient>
           </defs>
         </svg>

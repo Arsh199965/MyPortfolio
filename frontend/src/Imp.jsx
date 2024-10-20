@@ -6,7 +6,7 @@ const BrokenText = ({ text, cname }) => {
       return <br key={index}></br>;
     }
     return (
-      <span key={index} className={cname}>
+      <span key={index} className={`${cname}`}>
         {char}
       </span>
     );
