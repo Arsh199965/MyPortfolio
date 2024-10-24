@@ -20,7 +20,7 @@ const Footer = React.forwardRef((props, ref) => {
           </div>
 
           {/* Right Section */}
-          <div className="flex flex-col text-center items-center">
+          <div className="flex flex-col lg:pr-10 text-center items-center">
             <h2 className="text-xl xs:text-2xl font-bold mb-4">CONTACT ME</h2>
             <div className="flex flex-col space-y-2 text-sm xs:text-md">
               <div className="flex items-center space-x-2">
