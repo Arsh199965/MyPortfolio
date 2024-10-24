@@ -75,19 +75,19 @@ export default function HomePage() {
           {/* Main Text Section */}
           <div className="pt-24 xs:pl-10 lg:pl-40 flex items-center justify-center px-4 sm:pt-36 sm:px-16">
             <div className="  text-3xl sm:text-4xl md:text-5xl lg:text-[3.8rem] xl:text-[5.1rem] font-black font-inter lg:leading-[1.2]  md:leading-[1.4] sm:leading-[1.65] tracking-widest text-white">
-              <span className="lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.65] pr-2  ">
+              <span className="lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.5] pr-2  ">
                 JUST A GUY WHO LOVES CREATING
               </span>
               {isXs && <br />}
-              <span className="text-customPink lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.65] ">
+              <span className="text-customPink lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.5] ">
                 BEAUTIFULLY
               </span>
               <br />
-              <span className="text-customRed lg:leading-[1.2]  md:leading-[1.4] xs:leading-[1.65] ">
+              <span className="text-customRed lg:leading-[1.2]  md:leading-[1.4] xs:leading-[1.5] ">
                 ENGAGING
               </span>{" "}
               AND
-              <span className="text-customBlue lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.65] block">
+              <span className="text-customBlue lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.5] block">
                 INTERACTIVE
               </span>
               WEBSITES
@@ -95,7 +95,7 @@ export default function HomePage() {
           </div>
 
           {/* Image Section */}
-          <div className="flex lg:absolute top-[18rem] right-16 justify-center sm:p-4  sm:mt-20 md:mt-4 xs:mt-20 lg:mt-8 z-10 ">
+          <div className="flex lg:absolute top-[18rem] right-16 justify-center sm:p-4  sm:mt-20 md:mt-4 xs:mt-16 lg:mt-8 z-10 ">
             <div className="xl:w-[510px] lg:w-[450px] md:w-[490px] sm:w-[390px] xs:w-[300px] rounded-xl h-auto overflow-hidden shadow-lg   ">
               <img
                 src={Me}
