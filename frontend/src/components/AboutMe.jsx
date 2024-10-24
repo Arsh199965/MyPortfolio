@@ -40,21 +40,21 @@ const AboutMe = React.forwardRef((props, ref) => {
   return (
     <section
       ref={ref}
-      className="bg-black text-white flex flex-col items-center pt-16 pb-40"
+      className="bg-black text-white flex flex-col items-center pt-16 pb-20 md:pb-40"
     >
       <h2
         ref={heading}
-        className="text-[6rem] font-inter -translate-x-[21rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-customBlue via-customPink to-customRed"
+        className="text-5xl xs:text-6xl md:text-[6rem] xl:-translate-x-[20rem] lg:-translate-x-[15rem] font-inter font-black text-transparent bg-clip-text bg-gradient-to-r from-customBlue via-customPink to-customRed mb-8"
       >
         ABOUT ME
       </h2>
-      <div className="container flex flex-col md:flex-row justify-center space-x-24 items-center">
+      <div className="container flex flex-col md:flex-row justify-center space-y-10 md:space-x-24 md:space-y-0 items-center">
         {/* Text Section */}
-        <div className="w-full md:w-1/2 lg:w-[40rem] space-y-6">
-          <ul className="list-disc text-[0.92rem] font-inter list-inside space-y-4">
+        <div className="w-full px-5 md:px-0 md:w-1/2 lg:w-[40rem] space-y-6">
+          <ul className="list-disc text-[0.88rem] md:text-[1rem] font-inter list-inside space-y-4">
             <li>
-              I'm a passionate web developer and software engineer with
-              experience in building modern, responsive websites and web
+              I'm a passionate web developer and an aspiring software engineer with
+              experience in building modern, interactive websites and web
               applications.
             </li>
             <li>
@@ -62,12 +62,12 @@ const AboutMe = React.forwardRef((props, ref) => {
               cutting-edge technologies to create seamless user experiences.
             </li>
             <li>
-              My journey began with a curiosity for coding, and now I create
+              My journey began with a curiosity for coding, and now I love to create
               digital solutions that make a real-world impact.
             </li>
             <li>
               I've worked on a variety of projects, ranging from small
-              portfolios to full-fledged employment platforms.
+              portfolios to frontend of comprehensive employment platform.
             </li>
             <li>
               I'm constantly exploring new ways to push the boundaries of
@@ -80,7 +80,7 @@ const AboutMe = React.forwardRef((props, ref) => {
         {/* Image Section */}
         <div
           ref={img}
-          className="w-full md:w-1/3 lg:w-[29rem] -translate-y-10 mt-8 md:mt-0"
+          className="w-full xs:w-[22rem] md:w-[45%] lg:w-[29rem] -translate-y-10 mt-8 md:mt-0"
         >
           <img
             src={MyPic}

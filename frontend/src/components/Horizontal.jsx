@@ -1,9 +1,9 @@
 import Fun from "../assets/Interactive-Screen.svg";
 import Design from "../assets/Web-Design.svg";
 import Engage from "../assets/Customer-Review.svg";
-import { useGSAP } from '@gsap/react';
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,105 +14,146 @@ export default function Horizontal() {
   const ref3 = useRef();
   const ref4 = useRef();
   let sections = [ref1, ref2, ref3, ref4];
-  
+
   const text1 = useRef();
   const text2 = useRef();
   const text3 = useRef();
   const ball = useRef();
+  const [isXs, setIsXs] = useState(false);
+  const [isSm, setIsSm] = useState(false);
+  const [isMd, setIsMd] = useState(false);
+  const [isLg, setIsLg] = useState(false);
+  const [isXl, setIsXl] = useState(false);
+
+  useEffect(() => {
+    // Function to check screen width
+    const checkScreenWidth = () => {
+      if (window.innerWidth > 380 && window.innerWidth < 640 ) {
+        setIsXs(true);
+      } else {
+        setIsXs(false);
+      }
+      if (window.innerWidth > 640 && window.innerWidth < 768) {
+        setIsSm(true);
+      } else {
+        setIsSm(false);
+      }
+      if (window.innerWidth > 768 && window.innerWidth < 1024) {
+        setIsMd(true);
+      } else {
+        setIsMd(false);
+      }
+      if (window.innerWidth > 1024 && window.innerWidth < 1280) {
+        setIsLg(true);
+      } else {
+        setIsLg(false);
+      }
+      if (window.innerWidth > 1280) {
+        setIsXl(true);
+      } else {
+        setIsXl(false);
+
+      };
+    };
+
+    // Initial check
+    checkScreenWidth();
+
+    // Add event listener to check screen width on resize
+    window.addEventListener("resize", checkScreenWidth);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth);
+    };
+  }, []);
+
+  
+    useGSAP(() => {
+      let scroll;
+
+    
+      scroll = gsap.to(
+        sections.map((section) => section.current),
+        {
+          x: -100 * (sections.length - 1.75) + "vw",
+          scrollTrigger: {
+            trigger: main.current,
+            pin: true,
+            scrub: 1,
+            end: "+=3000",
+          },
+        }
+      );
   
 
-  useGSAP(() => {
-    let scroll=gsap.to(sections.map((section) => section.current), {
-      x: -100*(sections.length-1.75)+ "vw",
-      scrollTrigger: {
-        trigger: main.current,
-        pin: true,
-        scrub: 1,
-        end: "+=3000",
-      },
-    });
-    
-    
       gsap.to(text1.current, {
         backgroundImage: "linear-gradient(to right, #F87274, #9B2C2C)",
-
         duration: 1,
         scrollTrigger: {
           trigger: ref2.current,
           start: "left-=300 center",
           toggleActions: "play reverse play reverse",
           containerAnimation: scroll,
-          // markers: true,
         },
       });
       gsap.to(text2.current, {
         backgroundImage: "linear-gradient(to right, #0984E3, #AA0478, #5F0398)",
-
         duration: 1,
         scrollTrigger: {
           trigger: ref3.current,
           start: "left-=600 center",
           toggleActions: "play reverse play reverse",
           containerAnimation: scroll,
-          // markers: true,
         },
       });
-    gsap.to(text3.current, {
-      backgroundImage: "linear-gradient(to right, #CA4978, #97266D)",
-
-      duration: 1,
-      scrollTrigger: {
-        trigger: ref4.current,
-        start: "left-=900 center",
-        toggleActions: "play reverse play reverse",
-        containerAnimation: scroll,
-        // markers: true,
-      },
-    });
-    sections.forEach((section, index) => {
-      gsap.from(section.current.querySelector(".illustration"), {
-        opacity: 0,
-        duration: 0.7,
-        y: -30,
-        ease: " power2.inOut",
+      gsap.to(text3.current, {
+        backgroundImage: "linear-gradient(to right, #CA4978, #97266D)",
+        duration: 1,
         scrollTrigger: {
-          trigger: section.current,
-          start: `left-=${300 + index * 200} center`,
+          trigger: ref4.current,
+          start: "left-=900 center",
           toggleActions: "play reverse play reverse",
           containerAnimation: scroll,
-          // markers: true,
-        },
-      });
-      gsap.to(ball.current, {
-        rotate: 360 * 3,
-        keyframes: {
-          x: [
-            0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1750, 1900, 2100,
-            2300, 2500, 2700, 2900, 3100, 3200, 3400,
-          ],
-          y: [
-            0, 0, 0, 0, -112.5, -425, -425, -425, -225, -175, 100, 100, 100,
-            -50, -200, -350, -500, -500, -500,
-          ],
-        },
-        ease: "none",
-        scrollTrigger: {
-          trigger: main.current,
-          start: "top+=300 center",
-          end: "bottom+=1800 center",
-          toggleActions: "play reverse play reverse",
-          // markers: true,
-          scrub: 1,
-          // containerAnimation: scroll,
         },
       });
 
+      sections.forEach((section, index) => {
+        gsap.from(section.current.querySelector(".illustration"), {
+          opacity: 0,
+          duration: 0.7,
+          y: -30,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: section.current,
+            start: `left-=${300 + index * 200} center`,
+            toggleActions: "play reverse play reverse",
+            containerAnimation: scroll,
+          },
+        });
+        gsap.to(ball.current, {
+          rotate: 360 * 3,
+          keyframes: {
+            x: [
+              0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1750, 1900, 2100,
+              2300, 2500, 2700, 2900, 3100, 3200, 3400,
+            ],
+            y: [
+              0, 0, 0, 0, -112.5, -425, -425, -425, -225, -175, 100, 100, 100,
+              -50, -200, -350, -500, -500, -500,
+            ],
+          },
+          ease: "none",
+          scrollTrigger: {
+            trigger: main.current,
+            start: "top+=300 center",
+            end: "bottom+=1800 center",
+            toggleActions: "play reverse play reverse",
+            scrub: 1,
+          },
+        });
+      });
     });
-    
-    
-      
-        
-  });
 
   return (
     <div
@@ -124,15 +165,16 @@ export default function Horizontal() {
         ref={ref1}
         className="min-w-[100vw] flex flex-col items-center justify-center"
       >
-        <h1 className="text-[10rem] md:text-[12rem] font-black tracking-wide">
+        <h1 className="text-[5rem] xs:text-[4rem] sm:text-[6.5rem] xl:text-[10rem] md:text-[8rem] font-black tracking-wide">
           <span className="bg-gradient-to-r from-customRed via-customPink to-customBlue text-transparent bg-clip-text">
             WEBSITES
           </span>
         </h1>
-        <h2 className="text-white text-[3rem] md:text-[5rem] italic translate-x-96 font-handwritten font-black tracking-widest mt-[-2rem]">
+        <h2 className="text-white text-[2rem] xs:text-[1rem] sm:text-[2.5rem] md:text-[3rem] italic translate-x-20 xs:translate-x-32 md:translate-x-[15rem] font-handwritten font-black tracking-widest mt-[-1rem] ">
           THAT ARE
         </h2>
         <svg
+          className="xs:scale-50 sm:scale-75 md:scale-90 lg:scale-100"
           width="113"
           height="116"
           viewBox="0 0 113 116"
@@ -160,58 +202,55 @@ export default function Horizontal() {
           </defs>
         </svg>
       </div>
-
       {/* Image and Description Section */}
       <div
         ref={ref2}
-        className="min-w-[70vw] h-full flex flex-col items-center justify-center "
+        className="lg:min-w-[70vw] md:min-w-[100vw] sm:min-w-[120vw] xs:min-w-[140vw] xs:scale-[0.75] sm:scale-[0.85] md:scale-[0.95] lg:scale-[1] h-full flex flex-col items-center justify-center"
       >
         <h3
           ref={text1}
-          className="text-transparent bg-white translate-y-32 -translate-x-32 font-inter text-9xl bg-clip-text font-extrabold"
+          className="text-transparent bg-white translate-y-16 xs:translate-y-32 -translate-x-8 xs:-translate-x-32 font-inter text-5xl xs:text-9xl bg-clip-text font-extrabold"
         >
           FUN
         </h3>
         <img
           src={Fun}
           alt="Interactive Screen"
-          className="mt-5 w-[30rem] illustration h-auto object-cover"
+          className="mt-5 w-[15rem] xs:w-[25rem] md:w-[30rem] illustration h-auto object-cover"
         />
       </div>
-
       <div
         ref={ref3}
-        className="min-w-[70vw] h-full flex flex-col items-center justify-center "
+        className="lg:min-w-[70vw] md:min-w-[100vw] sm:min-w-[120vw] xs:min-w-[180vw] xs:scale-[0.75] sm:scale-[0.85] md:scale-[0.95] lg:scale-[1] h-full flex flex-col items-center justify-center"
       >
         <img
           src={Design}
           alt="Designed With Care"
-          className="mt-5 w-[30rem] illustration h-auto object-cover"
+          className="mt-5 w-[15rem] xs:w-[25rem] md:w-[30rem] illustration h-auto object-cover"
         />
         <h3
           ref={text2}
-          className=" bg-white text-transparent bg-clip-text font-inter -translate-y-24 -translate-x-16 text-6xl font-extrabold"
+          className="bg-white text-transparent bg-clip-text font-inter -translate-y-12 xs:-translate-y-24 -translate-x-8 xs:-translate-x-16 text-4xl xs:text-6xl font-extrabold"
         >
-          DESIGNED WITH <span className="">CARE</span>
+          DESIGNED WITH <span>CARE</span>
         </h3>
       </div>
-
       <div
         ref={ref4}
-        className="min-w-[70vw] h-full flex flex-col items-center justify-center "
+        className="lg:min-w-[70vw] md:min-w-[100vw] sm:min-w-[120vw] xs:min-w-[140vw] xs:scale-[0.75] sm:scale-[0.85] md:scale-[0.95] lg:scale-[1] h-full flex flex-col items-center justify-center"
       >
         <h3
           ref={text3}
-          className="text-transparent bg-white bg-clip-text font-inter -translate-x-52 translate-y-56 text-[2.7rem] font-extrabold -rotate-90"
+          className="text-transparent bg-white bg-clip-text font-inter -translate-x-28 xs:-translate-x-52 translate-y-32 xs:translate-y-56 text-3xl xs:text-[2.7rem] font-extrabold xs:-rotate-90"
         >
           DELICIOUSLY <span>ENGAGING</span>
         </h3>
         <img
           src={Engage}
           alt="Customer Review"
-          className="mt-5 w-[30rem] illustration h-auto object-cover"
-        />
-      </div>
+          className="mt-5 w-[15rem] xs:w-[25rem] md:w-[30rem] illustration h-auto object-cover"
+        />{" "}
+      </div>{" "}
     </div>
   );
 }

@@ -4,27 +4,25 @@ import React from "react";
 const Footer = React.forwardRef((props, ref) => {
   return (
     <footer ref={ref} className="bg-black">
-      <div className="text-white rounded-t-3xl pt-12 pb-6 bg-gradient-to-bl from-customRed via-customPink to-customBlue">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div className="text-white rounded-t-3xl pt-8 pb-6 bg-gradient-to-bl from-customRed via-customPink to-customBlue">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
           {/* Left Section */}
-          <div className="text-5xl font-pacifico  pl-6 font-bold">
+          <div className="text-3xl xs:text-4xl md:text-5xl font-pacifico pl-0 md:pl-6 font-bold text-center md:text-left">
             <h1 className="tracking-wide">CREATED WITH CARE</h1>
-            <p className="mt-4 font-handwritten text-lg italic">
+            <p className="mt-4 font-handwritten text-md xs:text-lg italic">
               "Code is like humor. When you have to explain it, it’s bad." –
               Cory House
             </p>
-            <p className="mt-1 font-handwritten text-lg italic">
+            <p className="mt-1 font-handwritten text-md xs:text-lg italic">
               "I'm not a great programmer; I'm just a good one with great
               habits." – Kent Beck
             </p>
           </div>
 
           {/* Right Section */}
-          <div className="mt-8 md:mt-0 flex flex-col text-center -translate-x-20 items-center">
-            <h2 className="text-2xl font-bold mb-4 -translate-x-9">
-              CONTACT ME
-            </h2>
-            <div className="flex flex-col space-y-2 text-md">
+          <div className="flex flex-col text-center items-center">
+            <h2 className="text-xl xs:text-2xl font-bold mb-4">CONTACT ME</h2>
+            <div className="flex flex-col space-y-2 text-sm xs:text-md">
               <div className="flex items-center space-x-2">
                 <FaEnvelope />
                 <span>arsh199965@gmail.com</span>
@@ -61,7 +59,7 @@ const Footer = React.forwardRef((props, ref) => {
 
         {/* Divider */}
         <div className="border-t border-white mt-5 pt-3">
-          <p className="text-center text-sm">
+          <p className="text-center text-xs xs:text-sm">
             "It works on my machine." – Every developer ever
           </p>
           <p className="text-center text-xs mt-2">

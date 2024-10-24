@@ -17,6 +17,11 @@ export default {
         customRed: '#F87274',
         customPink: '#CA4978',
       },
+      screens: {
+        'xs': '380px',
+        'xl': '1290px'
+      }
+       
     },
   },
   plugins: [
