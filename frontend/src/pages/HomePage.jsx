@@ -4,39 +4,36 @@ import Horizontal from "../components/Horizontal";
 import Projects from "../components/Projects";
 import AboutMe from "../components/AboutMe";
 import Footer from "../components/Footer";
+import HeroSection from "../components/HeroSection";
+import MobileHorizontal from "../components/MobileHorizontal";
 
 export default function HomePage() {
   const projects = useRef();
   const about = useRef();
   const contact = useRef();
   const [isXs, setIsXs] = useState(false);
-
-  useEffect(() => {
-    // Function to check screen width
-    const checkScreenWidth = () => {
-      if (window.innerWidth < 480) {
-        setIsXs(true);
-      } else {
-        setIsXs(false);
-      }
-    };
-
-    // Initial check
-    checkScreenWidth();
-
-    // Add event listener to check screen width on resize
-    window.addEventListener("resize", checkScreenWidth);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", checkScreenWidth);
-    };
-  }, []);
-
-  // Scroll to section function
-  const scrollToSection = (ref) => {
-    ref.current.scrollIntoView({ behavior: "smooth" });
+const scrollToSection = (sectionRef) => {
+  window.scrollTo({
+    top: sectionRef.current.offsetTop,
+    behavior: "smooth",
+  });
   };
+    const [screenSize, setScreenSize] = useState("default");
+
+    useEffect(() => {
+      const handleResize = () => {
+        const width = window.innerWidth;
+        if (width < 640) setScreenSize("xs");
+        else if (width < 768) setScreenSize("sm");
+        else if (width < 1024) setScreenSize("md");
+        else if (width < 1280) setScreenSize("lg");
+        else setScreenSize("xl");
+      };
+
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
   return (
     <div className="relative min-h-screen bg-black">
@@ -52,7 +49,10 @@ export default function HomePage() {
           <div className="flex space-x-4 sm:space-x-8 lg:text-lg md:text-lg sm:text-xs ">
             <a
               href="#contact"
-              onClick={() => scrollToSection(contact)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(contact);
+              }}
               className="text-white  font-medium"
             >
               CONTACT
@@ -71,42 +71,13 @@ export default function HomePage() {
       {/* Main Content Wrapper */}
       <div className="overflow-auto w-full min-h-screen h-auto items-center bg-black justify-center">
         {/* hero section */}
-        <div className=" ">
-          {/* Main Text Section */}
-          <div className="pt-24 xs:pl-10 lg:pl-40 flex items-center justify-center px-4 sm:pt-36 sm:px-16">
-            <div className="  text-3xl sm:text-4xl md:text-5xl lg:text-[3.8rem] xl:text-[5.1rem] font-black font-inter lg:leading-[1.2]  md:leading-[1.4] sm:leading-[1.65] tracking-widest text-white">
-              <span className="lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.5] pr-2  ">
-                JUST A GUY WHO LOVES CREATING
-              </span>
-              {isXs && <br />}
-              <span className="text-customPink lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.5] ">
-                BEAUTIFULLY
-              </span>
-              <br />
-              <span className="text-customRed lg:leading-[1.2]  md:leading-[1.4] xs:leading-[1.5] ">
-                ENGAGING
-              </span>{" "}
-              AND
-              <span className="text-customBlue lg:leading-[1.2] md:leading-[1.4] xs:leading-[1.5] block">
-                INTERACTIVE
-              </span>
-              WEBSITES
-            </div>
-          </div>
-
-          {/* Image Section */}
-          <div className="flex lg:absolute top-[18rem] right-16 justify-center sm:p-4  sm:mt-20 md:mt-4 xs:mt-16 lg:mt-8 z-10 ">
-            <div className="xl:w-[510px] lg:w-[450px] md:w-[490px] sm:w-[390px] xs:w-[300px] rounded-xl h-auto overflow-hidden shadow-lg   ">
-              <img
-                src={Me}
-                alt="Me at event"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
-        </div>
+        <HeroSection />
         {/* Horizontal section */}
-        <Horizontal />
+        {screenSize === "xs" || screenSize === "sm" || screenSize === "md" ? (
+          <MobileHorizontal />
+        ) : (
+          <Horizontal />
+        )}
 
         {/* Projects Section */}
         <Projects ref={projects} />

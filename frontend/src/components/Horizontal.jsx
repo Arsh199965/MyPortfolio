@@ -76,12 +76,12 @@ export default function Horizontal() {
       scroll = gsap.to(
         sections.map((section) => section.current),
         {
-          x: -100 * (sections.length - 1.75) + "vw",
+          x: -100 * (sections.length - 1.7) + "vw",
           scrollTrigger: {
             trigger: main.current,
             pin: true,
             scrub: 1,
-            end: "+=3000",
+            end: "+=3000" ,
           },
         }
       );
