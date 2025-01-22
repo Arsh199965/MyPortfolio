@@ -33,7 +33,7 @@ const AboutMe = React.forwardRef((props, ref) => {
       content: (
         <div className="space-y-4 text-gray-300">
           <p className="leading-relaxed">
-            I'm a passionate web developer and aspiring machine engineer,
+            I'm a passionate web developer and an aspiring machine learning engineer,
             driven by the art of creating modern, interactive digital
             experiences. My journey in tech has been fueled by curiosity and a
             relentless desire to innovate.
