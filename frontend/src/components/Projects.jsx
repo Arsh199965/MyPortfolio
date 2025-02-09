@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import ProjectLove from "../assets/ProjectLove.png";
 import CareerConquest from "../assets/CareerConquest.png";
-import Portfolio from "../assets/Portfolio.png";
+// import Portfolio from "../assets/Portfolio.png";
+import FridgePilot from "../assets/FridgePilot.png";
 import BrokenText from "../Imp.jsx";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
@@ -15,14 +16,14 @@ const projects = [
     link: "https://projectlove.vercel.app",
   },
   {
+    name: "Fridge Pilot",
+    img: FridgePilot,
+    link: "https://FridgePilot.vercel.app",
+  },
+  {
     name: "Career Conquest",
     img: CareerConquest,
     link: "https://careerconquest.vercel.app",
-  },
-  {
-    name: "Portfolio",
-    img: Portfolio,
-    link: "https://arshahmad.vercel.app",
   },
 ];
 
