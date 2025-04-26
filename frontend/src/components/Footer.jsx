@@ -65,13 +65,13 @@ const Footer = React.forwardRef((props,ref) => {
       href: "mailto:arsh199965@gmail.com",
       animation: "hover:scale-[1.02]",
     },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 8800918649",
-      href: "tel:+918800918649",
-      animation: "hover:scale-[1.02]",
-    },
+    // {
+    //   icon: Phone,
+    //   label: "Phone",
+    //   value: "+91 8800918649",
+    //   href: "tel:+918800918649",
+    //   animation: "hover:scale-[1.02]",
+    // },
     {
       icon: Linkedin,
       label: "LinkedIn",
